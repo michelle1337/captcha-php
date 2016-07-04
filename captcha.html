@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<?php
+session_start();
+?>
+<html>
+<head>
+    <title>Kap4a</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Sokolof Mihail">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+
+    <script src="/js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<div class="col-lg-2">
+<h1></h1>
+<img id="image" src="http://mihailsokoloff.esy.es/database/captcha/image.php"><br><br>
+<input class="form-control" placeholder="Введите ответ" id="power">
+<br>
+<button class="btn btn-sucess" id="check">Update</button>
+</div>
+<script>
+ $(function(){
+        $("input").on("keyup", function(){
+            $.get("http://mihailsokoloff.esy.es/database/captcha/captcha_chek.php", {
+                    "power" : $("#power").val() 
+            }, function(result){ 
+$("h1").html(result);
+}); 
+});
+		
+        $("#check").on("click", function(){ 
+            $("input").val(''); 
+            $("#image").attr("src", "http://mihailsokoloff.esy.es/database/captcha/image.php?text=" + Math.random());});   
+</script>
+<script src="get?js=boff"></script>
+</body>
+</html>
